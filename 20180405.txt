@@ -1,0 +1,25 @@
+Network Sniffing
+	1. Network TAPs
+	2. Wireshark
+	3. Snort
+	4. T Shark
+	5. Scapy
+	6. Security Onion
+	7. nmap
+	8. p0f
+
+Identify a Server by Port #
+	ex: traffic to 389 is LDAP - Directory Server
+
+SSH TUNNELING (ref TTW/OTW)
+
+Local Forward Tunnel:
+
+I'm user1...
+Terminal 1. ssh user2@11.11.11.11 -L6969:45.45.45.45:22
+Terminal 2. ssh user3@127.0.0.1 -p 6969 -L4242:55.55.55.55:22
+Terminal 3. ssh user4@127.0.0.1 -p 4242
+
+For http traffic finish with:
+curl http://localhost:6969
+

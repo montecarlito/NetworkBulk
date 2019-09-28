@@ -1,0 +1,47 @@
+WHAT IS HAPPENING HERE???
+
+1.
+00 00 00 00 00 00 00 00 00 00 00 00 08 00 45 08 00 6F 65 D2 40 00 40 06 51 62 C0 A8 00 FE C0 A8 00 FE DB 62 0C EA CC D8 BC A7 CD 34 98 95 80 18 02 12 83 AE 00 00 01 01 08 0A 00 F1 5D F0 00 F1 39 01 37 00 00 00 03 69 6E 73 65 72 74 20 69 6E 74 6F 20 66 6F 6F 20 28 61 6E 69 6D 61 6C 2C 20 6E 61 6D 65 29 20 76 61 6C 75 65 73 20 28 22 64 6F 67 22 2C 20 22 47 6F 6F 66 79 22 29
+
+	-"00 00 00 00 00 00 00 00 00 00 00 00" No src or dst add
+	-"08 00"
+	-"45" IPv4, IHL=20bytes
+	-"08" Differentiated Svcs Field 0x08 (YouTube, Gaming, P2P)
+	-Flags 0x02 (DF [don't fragment])
+	-TCP
+	-Total Length "00 6F" = 111
+	-Header checksum 0x5162 = True
+	-Source "C0:A8:00:FE" = 192.168.0.254
+	-Src or dst add "" = 192.168.0.254
+	-Port numbers dst 3306 (MySQL) and src 56162
+	-TCP Flags 0x018 (A,P)
+	-Checksum 0x83ae = False (should be 0x7d91)
+
+
+2.
+00 00 00 00 00 00 00 00 00 00 00 00 08 00 45 08 00 3F 4B 60 40 00 40 06 6C 04 C0 A8 00 FE C0 A8 00 FE 0C EA DB 62 CD 34 98 95 CC D8 BC E2 80 18 02 11 83 7E 00 00 01 01 08 0A 00 F1 5D F0 00 F1 5D F0 07 00 00 01 00 01 01 02 00 00 00
+
+	-"00 00 00 00 00 00 00 00 00 00 00 00" No src or dst add
+	-"45 08" IPv4, IHL=20
+	-Flags 0x02 (DF)
+	-TCP
+	-Total Length "00 3F" = 63
+	-Header checksum 0x6c04 = True
+	-Src & Dst add C0:A8:00:FE = 192.168.0.254
+	-Port numbers src 3306 (MySQL) and 56162
+	-TCP Flags 0x18 (A,P)
+	-Pkt checksum 0x837e = False (should be 0x53b3)
+
+
+Ref: wikipedia
+
+Class selector values 
+DSCP 	Binary 		Hex 	Decimal Typical application 	Examples
+CS0 (Default) 000 000 	0x00 	0 		
+CS1 	001 000 	0x08 	8 	Scavenger 		YouTube, Gaming, P2P
+CS2 	010 000 	0x10 	16 	OAM 			SNMP,SSH,Syslog
+CS3 	011 000 	0x18 	24 	Signaling 		SCCP,SIP,H.323
+CS4 	100 000 	0x20 	32 	Realtime 		TelePresence
+CS5 	101 000 	0x28 	40 	Broadcast video 	Cisco IPVS
+CS6 	110 000 	0x30 	48 	Network control 	EIGRP,OSPF,HSRP,IKE
+CS7 	111 000 	0x38 	56 		

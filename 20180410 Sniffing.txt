@@ -1,0 +1,60 @@
+WATCHING THE WIRE (NETWORK SNIFFING)
+	1. Sofware (WS) vs Hardware (Tap) sniffing
+		-WS is detailed but isn't as good with large pcaps
+		-WS Remote Capture Interface uses WinPcap
+		-WS can export objects
+		-WS can decrypt traffic if you have access to the keys
+		-WS Geolocation (maxmind.com DBs)
+		-TCPDump is less taxing for large amounts of traffic (-X gives payload info)
+		-both use same filters (excluding Berkeley Packet Filters)
+	2. Mirrored (Span) port vs TAP (Test Access Point)
+		-SPAN (Switch Port Analyzer) is a low-cost switch feature with low load capacity
+		-TAP doesn't drop packets but costs more
+	3. NIC modes
+		-Promiscuous mode #NIC takes everything it sees
+		-sniffing is generally passive
+
+~$tcpdump -vv -w example.pcap -i eth0 #extra verbose written to file from eth0
+~$tcpdump 'src 192.168.0.1 tcp port 80' -r example.pcap #captures all tcp traffic at addy
+
+Why is DNS sniffing important???
+	-can contribute to MitM atk, DNS poisoning, data exfil, botnet C2, detect callbacks
+
+BERKELEY PACKET FILTERS
+	-allows a user-space program (like TCPdump or IPTables) to attach a custom filter onto
+		any socket. The filter code is sent to the kernel via SO_ATTACH_FILTER option
+	-LibPcap is how this happens using TCPdump for example
+**Learn Masking
+	-Unskilled Attackers Pester Real Security Folk (urg, ack, psh, rst, syn, fin)
+
+FLOW ANALYSIS
+	-netflow (Cisco) aggregates IP flows & sends to collection pt for analysis
+	-sflow (industry standard) isn't restricted to IP; built into ASIC
+
+SERVER ID
+	-OS detection
+	-Helps determine need for custom exploits
+	-Backporting (applying fix/patch to older software versions)
+
+SIGNATURES
+	1. TTL
+	2. TCP Options - allow for byte code analysis/injection
+	3. Selective Acknowledgement
+
+FRAGMENTED PKT
+	-reasons for
+	-check ID number
+	-sequence number and byte offest (start at 0 for counting offset)
+		ether[12:2] (start at byte 12 and read 2 bytes; byte 12 looks like byte 13)
+		tcp[13] = 0x12 (looking at SYN/ACK)
+		tcp[2:2] = 0x0050 (looking at port 80)
+
+hex nibble = 4096 | 256 | 16 | 1
+
+**what parts of packet headers are part of each layer??? (ex: ICMP is L3 only)
+
+PACKET INJECTION
+	-covert payload transport
+	-Censorship, ads, malware, notifications
+	-performed by Edge & Core ISPs too
+

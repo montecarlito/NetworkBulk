@@ -1,0 +1,67 @@
+ARP Scapy Review:
+	1. After creating Ether() et al you can ls(Ether) or ls(a) to see available fields
+	2. Creating an ARP request lets you impersonate an automated protocol
+	3. Taking it a step further you could set the target ip to broadcast, incrementing the 
+		last octet by 1 each time.
+	4. We should never see host-to-host comms in a domain (like ours) so every activity or
+		mobilization should have defense included.
+	5. Seeing a bunch of arp requests with no follow-on traffic is an indicator bc it
+		would usually be one sent to the default gateway.
+	6. Offensively, this scan is much quieter than a ping sweep. Also, ping is more suspicious
+		than arp bc pings are human-initiated.
+
+ICMPv6 RA (Rtr Advertisement) Scapy Review:
+	1. If IPv6 is enabled on a victim, you have a potentially quiet vector if they're only 
+		monitoring IPv4.
+	2. The objective is pretending to be an authorized giver of host addresses.
+	3. Works on IPv6 without DHCP enabled bc you're impersonating a Rtr not a DHCP Svr.
+	4. NICs usually own/lease/borrow multiple IPv6 addresses.
+	5. Scapy is probably too well-known to do much offense with it.
+
+
+NETWORKING RECON
+
+Social Engineering
+	1. Whaling
+	2. Phishing (see Kevin Mitnik)
+	3. Vishing (voice solicitation)
+	4. Recruiter Fraud
+
+Passive vs Active Scanning - the difference is contact
+
+Open Source Research
+	1. whois
+	2. Shodan
+	3. IANA
+
+Port Scans
+	1. nmap, netcat, Scapy
+	2. SYN scan (half-open)
+	3. ACK scan (may pass the firewall if it thinks a SYN-ACK could've gone out)
+	4. Null, X-mas Tree or FIN scans (stealthy)
+	5. UDP scan (no handshake may fool a stateful FW)
+
+TCP Flags
+	1. Christmas Trees
+	2. RSTs???
+
+**Fingerprint a box/OS passively with P0F - sniff their traffic and use contents to ID an OS
+	LOOKS AT:
+	1. IP version
+	2. Intial TTL
+	3. IP Options
+	4. MSS
+	5. TCP Options
+	6. Payload Class
+
+Rtr/Switch Configs
+	1. User Exec mode
+	2. Priv Exec mode
+	3. Global Config mode
+	4. Cisco Discovery Protocol (CDP), LLDP, FDP, 
+	5. Enable password / Enable Secret
+	6. Remote access - Telnet
+	7. IP Source Routing - how you want your pkt to traverse the internal network
+		(single point of failure as opposed to dynamic routing)
+	8. Logging - catch bad guys / cover tracks (remote logging is critical)
+

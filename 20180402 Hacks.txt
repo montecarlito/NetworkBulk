@@ -1,0 +1,74 @@
+Industroyer/Crash Override (wormable RAT)
+	-delivered via phishing email
+	-caused blackout in Ukranian power grid
+
+Operational Tech vs Informational Tech
+	-OT has real-time impact (critical infrastructure) and a 20+ year life cycle
+	-IT isn't real-time and has 3-5 yr life cycles
+
+Stuxnet took advantage of many zero day flaws in concert
+	-destroyed centrifuges and blocked error codes = surprise
+
+ESET
+
+Industrial Control Systems are a popular target for their impact level.
+	1. Human Machine Interfaces
+	2. Analog Relays are the fundamental controllers and straighforward weaknesses
+	3. Programmable Logic Controllers replaced them AR's
+	4. Microcontrollers (Arduino)
+	5. Remote Terminal Unit (RTU) for portable WAN connectivity
+	6. Intelligent Electronic Devices combine RTU+PLC+maybeHMI's too
+
+Controlled Process 
+	-automation
+
+Sensors
+	-error & progress reporting
+	-measurements
+	-controlled changes
+	-measured vs desired effects
+
+Engineering Workstations
+	-work with ICS's
+
+Supervisory Workstations
+
+Control System Operation (Control Theory)
+	-Open Loop Control (HMI does the job but there's no sensors/feedback =cheap)
+	-Closed Loop Control (sensors like PID give controller input for process mgmt)
+	  (PID has proportional component [current value], Integral component [avg of past
+	   values], and differential component [change])
+	-most controllers don't even have an OS; many microcontrollers just use C 	  	  programming to run a terminal "while" loop.
+	-data historians for AARs
+
+DCS implements multilevel control across a LAN
+SCADA ICS operates across a WAN
+Process Control Systems are a subset of DCS
+Bldg Mgmt Systems
+Energy Mgmt Systems
+Industrial IoT (often wireless mesh and vulnerable)
+
+MODBUS over TCP (default port 502)
+OPC for sharing
+DNP3 for electrical grids (clear text) 
+Ethernet IP (Industrial Protocol) uses UDP for time-critical msg, TCP for non...
+Profibus vs Pofinet
+
+ICS Engineering Design Priorities:
+
+    Functionality
+    Profit
+    Legal Compliance
+    Personnel Safety
+    Environmental Impact
+    Security
+
+ICS/IT Security Priorities: CIA (confidentiality, integrity, availability)
+OT Security Priorities: SAIC (safety, availability, integrity, confidentiality)
+
+ICS Functional Zones (Purdue model)
+	-Enterprise Zone
+	-DMZ
+	-Manufacturing Zone
+	-Cell/Area Zone (Process, Basic Control, Area Supervisory, Manuf Ops & Control,
+		Firewall)

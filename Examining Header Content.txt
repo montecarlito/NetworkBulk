@@ -1,0 +1,37 @@
+1. How many bits/bytes are in the src/dst fields of a TCP/UDP header and why are they important?
+	-2 bytes (16 bits) each
+	-The port fields represent logical addressing schemes for data transfer at Layer 4
+
+2. The src address field shows the IPv6 addy of the packet's origination. What is the size of the
+   src address field?
+	-16 bytes (128 bits)
+
+3. ICMP relays what types of info through a network?
+	-It is used by network devices, including routers, to send error messages and operational 		information indicating, for example, that a requested service is not available or 		that a host or router could not be reached.
+
+4. An ICMP type 8 message is used for what?
+	-Echo: The data received in the echo request message must be returned in the echo reply 		message.
+
+5. Every header must declare its payload (next protocol). In the Eth header, what field declares
+   the protocol encapsulated within the frame?
+	-Protocol field, byte offset 9
+
+6. What are the DF & MF flags in the IPv4 header used for? Are these used in IPv6 headers? Why or
+   why not?
+	-Do not Fragment; More Fragments to follow
+	-Yes, code 44. It's critical in support of communication using fragmented packets (in 		IPv6, the traffic source must do fragmentation-routers do not perform 		fragmentation of the packets they forward)
+
+7. In the IPv4 header, what is the TTL field used for?
+	-the number of hops that a packet is permitted to travel before being discarded by a 		router
+
+8. What could an ICMP type 11 msg indicate?
+	a) Code 0 = TTL exceeded in transit
+	b) Code 1 = Fragment REassembly Time Exceeded
+
+9. What are the checksum fields used for?
+	-payload integrity
+
+10. What is the diff btwn IHL and the total length fields in an IPv4 header?
+	-IHL is the number of 32-bit words in the TCP header (min 5) multiplied by 4 (IPv4) to 
+		get byte count
+	-Total Length of IP datagram (or IP fragment); measured in bytes

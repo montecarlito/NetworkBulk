@@ -1,0 +1,102 @@
+NETWORK EXPLOITATION
+
+Hacker Methodology
+	1. Recon (Footprint, scans, enumeration, net map)
+	2. Gain Access
+	3. Priv Escalation
+	4. Post-exploitation
+	5. Target Survey & Remote Forensic Analysis
+	6. Cover Tracks (upon arrival & during departure)
+	7. Collect Data (if any)
+	8. Establish Persistence (rootkit+backdoor+RAT)
+
+Cyber Threat Actors
+	-Cyber criminals (Fancy Bear)
+	-State-sponsored (CPT 174, TAO)
+	-Hacktivists (Anonymous)
+	-Insider threats (Bradley/Chelsea Manning)
+	-Transnational actors (ISIS)
+	-Individual actors or small groups (mom's basement)
+
+Threat Actions
+	-Malware
+	-Hacking
+	-Social Tactics
+	-Misuse
+	-Physical
+	-Error
+	-Environmental
+
+Exploitation Methodologies
+	-Internal vs External (Internal = easier)
+	-Commonly Compromised Assets (domain controller, web server, email, phones)
+	-Importance of Testing Tools (proofing exploits, only effective for software though)
+
+Exfiltration done via outbound connections are very common, and hard to counter at the perimeter since this is an area that has been created to focus on incoming threats
+
+Common protocols are used to mask data exfiltration: HTTP/HTTPS, FTP and DNS for example easily blend into normal outbound network traffic, thus obfuscating the attacker's actions
+	-In-band vs Out-of-band (overt/covert)
+	-Access (ex: keylogger on a timer)
+	-Persistence
+	-Means
+	-Custom exfil tool vs Native utilities
+
+Critical Systems
+	- Assess Operational Architecture
+	- What types of functions are controlled by systems?
+	- How are dependencies represented among systems?
+	- Geopgraphic (i.e. Control over infrastructure or area)
+	- Physical (i.e. Router/hardware)
+	- Logical (i.e. DNS/software, psexec[smb], RDP)
+	- Cyber Persona (i.e. accounts/credentials/access to information)
+
+Credentials
+
+Admin/Domain Admin Credentials
+	- Need to be audited
+	- Should not have the ability to alter audit files
+	- Require secondary approval
+
+Access Controls
+	- Behavioral analysis
+	- Context Awareness
+	- Multi-factor authentication
+
+Gaining Access
+	-SQL Injection is a code injection technique that could destroy or compromise the 				integrity of a database
+	-SQL Injection is one of the most common web hacking techniques
+	-SQL Injection involved placing of malicious code within SQL statements, via a web page's 			unvalidated user input
+
+Exploit (access) vs Payload (shell code that takes advantage of the tgt)
+
+Bind Shell vs Reverse Shell
+
+Man in the Middle
+	-Placing yourself in the middle of coms
+	-Layer 2 (arp poison), Layer 3 (DNS poison, IP Spoof), and more
+
+DoS (one on one atk) vs DDoS (gang bang)
+
+
+Ashley Madison:
+	- Responsibility claimed by the "Impact Team"
+	- Approx. 9.7 Gb posted on Tor
+	- Site source code posted MANY git repos
+	- Little hard evidence released; not clear whether this was an insider or external hacking
+Collateral Effects: divorce, suicide, clearance revocation
+
+Yahoo Hacking:
+	- Yahoo's hacking has been measured as the largest data breach in history
+	- 2014 hack: 500 million accounts, 2014 hack: up to 1 billion accounts
+	- Not disclosed until 2016
+	- Two Russian FSB officials indicted
+	- US has no extradition treaty with Russia
+Collateral Effects: U.S. learned we aren't gangster, Verizon-Yahoo deal compromised
+
+OPM Hack:
+	- Breached December 2014
+	- 21 Million current/former Fed. Employees' PII leaked
+	- China is suspected of the breach
+	- SF-86's...foreign contacts?
+Collateral Effects: My IDcare subscriptions (they got hacked too)
+

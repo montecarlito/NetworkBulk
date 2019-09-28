@@ -1,0 +1,59 @@
+FILTERING
+
+Routed Firewalls are cheaper but slower; can NAT and set ACLs
+Transparent FWs are faster and more obscure, harder to hack (DoD/DISA preferred >> no FW making
+	routing decisions)
+
+Explicit Deny/Allow is admin specified
+Implicit rule is a default behavior without additional config
+
+Whitelisting = explicitly allowed apps/ports/protocols; ex- for ICS, servers, etc
+Blacklisting = explicitly denied; popular for end user protection
+
+Host-based FWs (ex: iptables, windows fw)
+Network-based FWs are dedicated devices
+	-Layer 2 (port filtering: prevents unauthorized hardware/connections)
+	-Layer 3 (packet filtering, router ACLs)
+	-Layer 4 (stateful inspection, protocol/flag filtering)
+	-Layer 7 (app level gateways [ex: WAF, proxy, deep pkt insp])
+	-pfsense is a network-based firewall with routing features
+
+Fire Walking (enumerating FW settings)
+	- Use ICMP, UDP, or TCP packets to test whether ports/protocols are allowed through 		filtering devices
+	- Incrementing TTL; TTL expirations trigger ICMP TTL exceeded replies
+	- Defense: block outgoing ICMP Time exceeded packets at the perimeter or use Network 		Address Translation to hide any/all internal network addresses
+	-a routed FW might give feedback as a hop; transparent FWs don't
+
+Traceroute
+	-ICMP tool for Fire Walking
+	-UDP tool for Linux Fire Walking
+		1. -T #sets TCP syn
+		2. -m #sets max TTL
+		3. -p #sets destination ports (udp starts port then increment, tcp=constant)
+		4. -U #sets constant udp port
+
+IDS vs IPS
+	-IDS doesn't need to be inline
+	-IDS logs &/or alerts
+	-IPS can drop, block, reset, sandbox...
+
+Signatures
+	1. Atomic - 
+	2. Stateful - 
+
+ACLs
+	-typically on Layer3 routing/switching devices
+	-similar to pkt filtering FWs
+	-"permit any any" vs "deny any any"
+	-Standard ACLs are placed closest to dst (99 & below)
+	-Extended ACLs are placed closest to src (100 & above)
+
+IPtables (not just for filtering)
+	-Collects stats on byte/pkt counts for each rule (IP accounting)
+	-Can be used for NAT, masquerading & port forwarding
+	-Can perform pkt mangling to modify fields in headers
+	-5 default "Chains" (see slides) that provide modular routing/output/input
+	-3 standard tables: Mangle, NAT & Filter (default)
+	-src rules = prerouting
+	-dst rules = postrouting
+**See slides for examples

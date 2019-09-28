@@ -1,0 +1,38 @@
+NETCAT sets up client-server connection, listener first:
+	1. ~$nc -l -p 4444 (for listener/server)
+	2. ~$nc 10.0.0.1 4444 (from client)
+If grabbing file from listener/server:
+	1. ~$nc -l -p 4444 < file.txt (in server)
+	2. ~$nc 10.0.0.1 4444 > file.txt (in client)
+If sending file (SCP)  to listener/server:
+	1. scp /etc/password student@10.0.0.1:/tmp/file.txt
+
+
+TUNNELING:
+	1. ~$ssh user2@10.2.0.2 -L127.0.0.1:6969:10.3.0.2:31337 #listen locally on user1 port 6969
+		for traffic to/from user3's port 31337
+	2. ~$nc -lp 31337 > newfile.exe
+	3. ~$nc 127.0.0.1 6969 < malware.exe
+
+FORWARD TUNNELING:
+	1. ~$ssh user2@10.2.0.2 -L127.0.0.1:1111:10.3.0.2:22 #Fwd tunnel through User2 to User3
+	2. ~$ssh user3@localhost -p 1111 -L127.0.0.1:2222:10.4.0.2:22 #Fwd tunnel through user3 			localhost to user4 to stay in tunnel
+	3. ~$ssh user4@localhost -p 2222 #Terminal 3 tunnel to user4
+File tx	4. ~$nc -lp 5555 > file1.txt
+	5. ~$ssh user3@localhost -p 1111 -L127.0.0.1:3333:10.4.0.2:5555 #Terminal 4 Makes an 				additional small pipe
+	6. ~$nc localhost 3333 < malware #Terminal 5
+
+"Shift+Tilda+C" opens SSH prompt in current terminal???
+
+FWD vs REV TUNNELING
+	1. Firewall is the big factor
+	2. Binds & Callbacks
+
+
+**~$ssh -D 9050 127.0.0.1 #dynamic tunnel (9050 is default port)
+	~$proxychains -A 10.4.0.2
+
+REVERSE TUNNELING
+	1. ~$ssh user2@10.2.0.2 -R0.0.0.0:4444:127.0.0.1:3333 #sends any user2 -p4444 traffic to 		u1 -p3333
+	2. ~$nc -vnlp 3333
+

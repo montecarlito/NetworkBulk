@@ -1,0 +1,99 @@
+Application	 \
+Presentation	 /Application	L7 firewalls, web browsers
+Session		/		(Data)
+Transport	=Transport	TCP/UDP (Segments)
+Network		=Internet	L3 Switches, Routers (OSPF, RIPv2), IPv 4&6, ICMP)
+Data Link	\		(frames)
+Physical	/Network	L2 Switches, Hubs, Bridges (Bits)
+
+**VLAN tagging = using a switch to create logical VLANs by tagging packet headers with 
+	source VLAN numbers (802.1Q) between Source MAC & Ethertype (4 bytes if at all)
+
+ARPs stay in the broadcst domain (subnet)
+
+The life of a packet:
+	1. Host sends packet
+	2. Router checks arp table
+	3. If not listed, rtr sends arp request
+	4. Packet is forwarded
+	
+Longest Match is router's breaking down of addresses (static routes) into binary bits 
+	and choosing best match
+
+Static Routing vs Dynamic
+
+TTL keeps the overhead down. Pings can tell you what someone is using.
+Traceroute
+
+UDP (VoIP, videos)
+TCP (data integrity)
+
+Ports:
+	-Server uses well-known
+	-Client uses RHP (random high ports)
+
+ETHERNET HEADERS
+	1. Preamble
+
+Ethertypes:
+	1. 0x0800 (IPv4)
+	2. 0x0806 (ARP)
+	3. 0x86DD (IPv6)
+
+IPv4 HEADERS
+	-includes IP addresses instead of MACs
+	-TTL
+	-Protocol of L4 
+	-IP Header Start gives length (default 4x5=20) so if it's bigger that's an 
+	  indicator
+
+UDP HEADERS
+	-Source Port
+	-Dest Port
+	-IP Protocol # 0x11 (decimal 17)
+
+TCP HEADERS
+	-Source Port
+	-Dest Port
+	-Sequence #
+	-ACK #
+	-Offset
+	-TCP Flags (8,4,2,1 + 8,4,2,1; SYN+ACK = 0x12, PSH+RST = 0x0C)
+		(CWR/ECE/URG/ACK + PSH/RST/SYN/FIN)
+
+FRAGMENTATION PROCESS
+	-size determined by MTU which is adjusted for efficiency/QoS/encryption/signature reduction
+	  (see Frag Attack)
+
+TTL
+	-Unix typically 64 
+	-Windows typically 128
+	-Routers typically 255
+	-defaults can be changed though
+
+ICMP HEADERS
+	-Type (Echo Request > Echo Reply > Destination Unreachable)
+	-Code (Host unreachable, Fragmentation needed, Port unreachable)
+
+APIPA
+	-automated local IP addy assignment (169.244.xxx - 169.255.xxx) isn't routable
+
+SLAAC
+
+RFC 4862 & 793
+
+Discreet Scans that defeat stateful firewalls:
+	1. Null Flags (empty)
+	2. FIN Flags (only FIN on)
+	3. Christmas Tree (all Flag bits on except SYN & ACK)
+
+Stateless firewall scans:
+	1. UDP (connectionless and takes a long time)
+
+SOCKETS:
+	1. RAW
+	2. Regular
+
+NAMESPACES
+	-regions where processes can share groups of resources (ie sandboxing processes on a host)
+
